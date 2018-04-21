@@ -1,0 +1,7 @@
+{
+  "name": "Teetime Auth API",
+  "version": "0.1.0",
+  "description": "Auth Microservice for Teetime App",
+  "title": "Teetime Auth API",
+  "url" : "https://api.teetime.com/v1"
+}

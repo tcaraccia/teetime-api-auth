@@ -71,7 +71,7 @@ describe('## User APIs', () => {
 
   describe('# PUT /api/users/:userId', () => {
     it('should update user details', (done) => {
-      user.username = 'KK';
+      user.username = 'test@google.com';
       request(app)
         .put(`/api/users/${user._id}`)
         .send(user)
