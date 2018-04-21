@@ -47,7 +47,7 @@ router.route('/')
 
  /**
  * @api {post} /api/v1/users Create a user
- * @apiVersion 1.0.0
+ * @apiVersion 0.1.0
  * @apiName Create
  * @apiGroup User
  * @apiPermission authenticated user
