@@ -20,8 +20,10 @@ after((done) => {
 
 describe('## User APIs', () => {
   let user = {
-    username: 'KK123',
-    mobileNumber: '1234567890'
+    email: 'test@google.com',
+    firstName: 'Test',
+    lastName:  'User',
+    enrolmentNumber: '5'
   };
 
   describe('# POST /api/users', () => {
@@ -31,8 +33,9 @@ describe('## User APIs', () => {
         .send(user)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.username).to.equal(user.username);
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
+          expect(res.body.email).to.equal(user.email);
+          expect(res.body.firstName).to.equal(user.firstName);
+          expect(res.body.lastName).to.equal(user.lastName);
           user = res.body;
           done();
         })
@@ -46,8 +49,9 @@ describe('## User APIs', () => {
         .get(`/api/users/${user._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.username).to.equal(user.username);
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
+          expect(res.body.email).to.equal(user.email);
+          expect(res.body.firstName).to.equal(user.firstName);
+          expect(res.body.lastName).to.equal(user.lastName);
           done();
         })
         .catch(done);
@@ -73,7 +77,7 @@ describe('## User APIs', () => {
         .send(user)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.username).to.equal('KK');
+          expect(res.body.email).to.equal('test@google.com');
           expect(res.body.mobileNumber).to.equal(user.mobileNumber);
           done();
         })
@@ -112,8 +116,9 @@ describe('## User APIs', () => {
         .delete(`/api/users/${user._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.username).to.equal('KK');
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
+          expect(res.body.email).to.equal('test@google.com');
+          expect(res.body.firstName).to.equal(user.firstName);
+          expect(res.body.lastName).to.equal(user.lastName);
           done();
         })
         .catch(done);

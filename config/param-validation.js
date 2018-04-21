@@ -4,16 +4,18 @@ module.exports = {
   // POST /api/users
   createUser: {
     body: {
-      username: Joi.string().required(),
-      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
+      email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required()
     }
   },
 
   // UPDATE /api/users/:userId
   updateUser: {
     body: {
-      username: Joi.string().required(),
-      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
+      email: Joi.string().regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required()
     },
     params: {
       userId: Joi.string().hex().required()
@@ -23,7 +25,7 @@ module.exports = {
   // POST /api/auth/login
   login: {
     body: {
-      username: Joi.string().required(),
+      email: Joi.string().required(),
       password: Joi.string().required()
     }
   }

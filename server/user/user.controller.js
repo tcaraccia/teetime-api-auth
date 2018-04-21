@@ -22,14 +22,18 @@ function get(req, res) {
 
 /**
  * Create new user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
+ * @property {string} req.body.email - The email of user.
+ * @property {string} req.body.firstName - The first name  of user.
+ * @property {string} req.body.lastName - The last name  of user.
+ * @property {string} req.body.enrolmentNumber - The enrolmentNumber name  of user.
  * @returns {User}
  */
 function create(req, res, next) {
   const user = new User({
-    username: req.body.username,
-    mobileNumber: req.body.mobileNumber
+    email: req.body.email,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    enrolmentNumber: req.body.enrolmentNumber
   });
 
   user.save()
@@ -39,14 +43,18 @@ function create(req, res, next) {
 
 /**
  * Update existing user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
+ * @property {string} req.body.email - The email of user.
+ * @property {string} req.body.firstName - The first name  of user.
+ * @property {string} req.body.lastName - The last name  of user.
+ * @property {string} req.body.enrolmentNumber - The enrolmentNumber name  of user.
  * @returns {User}
  */
 function update(req, res, next) {
   const user = req.user;
-  user.username = req.body.username;
-  user.mobileNumber = req.body.mobileNumber;
+  user.email = req.body.email;
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.enrolmentNumber = req.body.enrolmentNumber;
 
   user.save()
     .then(savedUser => res.json(savedUser))
