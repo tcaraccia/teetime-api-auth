@@ -49,7 +49,7 @@ describe('## Misc', () => {
       request(app)
         .post('/api/users')
         .send({
-          enrolmentNumber:6969
+          enrolmentNumber :6969
         })
         .expect(httpStatus.BAD_REQUEST)
         .then((res) => {
