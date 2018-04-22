@@ -2,6 +2,8 @@ const express = require('express');
 const validate = require('express-validation');
 const paramValidation = require('../../config/param-validation');
 const userCtrl = require('./user.controller');
+const expressJwt = require('express-jwt');
+const config = require('../../config/config');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -18,13 +20,13 @@ router.route('/')
  * @apiSuccess {String} firstName  FirstName of the User.
  * @apiSuccess {String} lastName  Lastname of the User.
  * @apiSuccess {String} enrolmentNumber  EnrolmentNumber of the User.
- * 
+ *
  * @apiExample {js} Example usage:
  * $http.defaults.headers.common["authorization"] = token;
  * $http.get(url)
  *    .sucess((res,status) => handlerSuccess())
  *    .error((res,status) => handlerErrro());
- * 
+ *
  * @apiSuccessExample {json} Success Response:
  *     HTTPS 200 OK
  *     [{
@@ -41,9 +43,9 @@ router.route('/')
  *       "lastName": "Edison",
  *       "enrolmentNumber": "69727979"
  *      }]
- * 
+ *
  */
-  .get(userCtrl.list)
+  .get(expressJwt({ secret: config.jwtSecret }), userCtrl.list)
 
  /**
  * @api {post} /api/v1/users Create a user
@@ -80,7 +82,7 @@ router.route('/')
 
 router.route('/:userId')
  /**
- * @api {get} /api/v1/users/:id Retrieve one user
+ * @api {get} /api/users/:id Retrieve one user
  * @apiName Get
  * @apiGroup User
  * @apiVersion 0.1.0
@@ -101,7 +103,7 @@ router.route('/:userId')
  *       "enrolmentNumber": "69727979"
  *
  *     }
- * 
+ *
  */
   .get(userCtrl.get)
 
@@ -117,7 +119,7 @@ router.route('/:userId')
  * @apiParam (Request Body) {String} firstName The user firstName
  * @apiParam (Request Body) {String} lastName The user lastName
  * @apiParam (Request Body) {String} enrolmentNumber The user enrolmentNumber
- * 
+ *
  * @apiExample {js} Example usage:
  * const data = {
  *       "email": "bernard@dot.com",
@@ -126,15 +128,15 @@ router.route('/:userId')
  *       "enrolmentNumber": "69727979"
  * }
  *
- * 
+ *
  * $http.default.headers.common["Authorization"] = token;
  * $http.put(url,data)
  *    .success((res,status)) => handleSuccess())
  *    .error((err,status)) => handleError());
- * 
+ *
  * @apiSuccess (Success 201) {String} message User saved successfully!
- * 
- * 
+ *
+ *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
@@ -151,13 +153,13 @@ router.route('/:userId')
  * @apiPermission authenticated user
  *
  * @apiParam {String} id User unique ID.
- * 
+ *
  * @apiExample {js} Example usage:
  * $http.default.headers.common["Authorization"] = token;
  * $http.delete(url)
  *    .success((res,status)) => handleSuccess())
  *    .error((err,status)) => handleError());
- * 
+ *
  * @apiSucess {String} message User deleted successfully!
  *
  * @apiSuccessExample Success-Response:

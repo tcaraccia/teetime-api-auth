@@ -22,7 +22,7 @@ describe('## User APIs', () => {
   let user = {
     email: 'test@google.com',
     firstName: 'Test',
-    lastName:  'User',
+    lastName: 'User',
     enrolmentNumber: '5'
   };
 
